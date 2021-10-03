@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -38,7 +39,7 @@ public class DefaultBandServiceUnitTest {
         bandModel.setCode(BAND_CODE);
         bandModel.setName(BAND_NAME);
         bandModel.setAlbumSales(1000L);
-        bandModel.setHistory(BAND_HISTORY);
+        bandModel.setHistory(BAND_HISTORY, Locale.ENGLISH);
     }
 
     @Test

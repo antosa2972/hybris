@@ -41,13 +41,15 @@ public class DefaultBandFacadeIntegrationTest extends ServicelayerTransactionalT
     private static final Long ALBUMS_SOLD = Long.valueOf(10L);
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         try {
             Thread.sleep(TimeUnit.SECONDS.toMillis(1));
             new JdbcTemplate(Registry.getCurrentTenant().getDataSource()).execute("CHECKPOINT");
             Thread.sleep(TimeUnit.SECONDS.toMillis(1));
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException exc) {
         }
+        importCsv("/impex/essentialdata-mediaformats.impex", "UTF-8");
+
         bandModel = modelService.create(BandModel.class);
         bandModel.setCode(BAND_CODE);
         bandModel.setName(BAND_NAME);
