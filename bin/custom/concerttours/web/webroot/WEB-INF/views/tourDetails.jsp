@@ -24,6 +24,8 @@ Tour Details for ${tour.tourName}
         </tr>
     </c:forEach>
 </table>
+<h3>Producer: <c:out value="${tour.producer.name} ${tour.producer.surname} "/></h3>
+<h4>Experience: <c:out value="${tour.producer.experience}"/> years</h4>
 <a href="../bands">Back to Band List</a>
 </body>
 </html>

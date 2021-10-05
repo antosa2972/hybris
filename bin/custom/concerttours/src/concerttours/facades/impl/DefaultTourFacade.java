@@ -1,5 +1,7 @@
 package concerttours.facades.impl;
 
+import concerttours.data.ProducerData;
+import concerttours.facades.ProducerFacade;
 import de.hybris.platform.core.model.product.ProductModel;
 import de.hybris.platform.product.ProductService;
 import de.hybris.platform.variants.model.VariantProductModel;
@@ -16,6 +18,7 @@ import concerttours.model.ConcertModel;
 
 public class DefaultTourFacade implements TourFacade {
     private ProductService productService;
+    private ProducerFacade producerFacade;
 
     @Override
     public TourData getTourDetails(final String tourId) {
@@ -41,16 +44,23 @@ public class DefaultTourFacade implements TourFacade {
                 }
             }
         }
+        ProducerData producerData = producerFacade.getProducer(product.getProducer().getCode());
         final TourData tourData = new TourData();
         tourData.setId(product.getCode());
         tourData.setTourName(product.getName());
         tourData.setDescription(product.getDescription());
         tourData.setConcerts(concerts);
+        tourData.setProducer(producerData);
         return tourData;
     }
 
     @Required
     public void setProductService(final ProductService productService) {
         this.productService = productService;
+    }
+
+    @Required
+    public void setProducerFacade(final ProducerFacade producerFacade) {
+        this.producerFacade = producerFacade;
     }
 }
