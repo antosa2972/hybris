@@ -62,14 +62,12 @@ public class DefaultBandFacade implements BandFacade {
                 genres.add(musicType.getCode());
             }
         }
-        // Create a list of TourSummaryData
         final List<TourSummaryData> tourHistory = new ArrayList<>();
         if (band.getTours() != null) {
             for (final ProductModel tour : band.getTours()) {
                 final TourSummaryData summary = new TourSummaryData();
                 summary.setId(tour.getCode());
                 summary.setTourName(tour.getName(Locale.ENGLISH));
-                // making the big assumption that all variants are concerts and ignore product catalogs
                 summary.setNumberOfConcerts(Integer.toString(tour.getVariants().size()));
                 tourHistory.add(summary);
             }

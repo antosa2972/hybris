@@ -41,6 +41,7 @@
     <alias name="defaultTourFacade" alias="tourFacade"/>
     <bean id="defaultTourFacade" class="concerttours.facades.impl.DefaultTourFacade">
         <property name="productService" ref="productService"/>
+        <property name="producerFacade" ref="producerFacade"/>
     </bean>
     <bean id="concertDaysUntilAttributeHandler"
           class="concerttours.attributehandlers.ConcertDaysUntilAttributeHandler"/>
@@ -63,5 +64,13 @@
     <bean id="sendNewsJob" class="concerttours.jobs.SendNewsJob" parent="abstractJobPerformable">
         <property name="newsService" ref="newsService"/>
         <property name="configurationService" ref="configurationService"/>
+    </bean>
+    <alias name="defaultProducerService" alias="producerService"/>
+    <bean id="defaultProducerService" class="concerttours.service.impl.DefaultProducerService">
+        <property name="producerDAO" ref="producerDAO"/>
+    </bean>
+    <alias name="defaultProducerFacade" alias="producerFacade"/>
+    <bean id="defaultProducerFacade" class="concerttours.facades.impl.DefaultProducerFacade">
+        <property name="producerService" ref="producerService"/>
     </bean>
 </beans>
